@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,23 +10,24 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
   </head>
-  <body>
+  <body style="background-color:#d6d6d6">
     <div class="container">
       <!-- Add Jumbotron to Header -->
       <div class="jumbotron text-center">
         <h1>Mission to Mars</h1>
         <!-- Add a button to activate scraping script -->
-        <p><a class="btn btn-info btn-xs" href="/scrape" role="button">Scrape New Data</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
       </div>
 
       <!-- Add section for Mars News -->
+      <!--Adding the lead class for paragraph-->
       <div class="row" id="mars-news">
-        <div class="col-md-12 col-xs-18">
+        <div class="col-md-12">
           <div class="media">
             <div class="media-body">
               <h2>Latest Mars News</h2>
               <h4 class="media-heading">{{ mars.news_title }}</h4>
-              <p>{{ mars.news_paragraph }}</p>
+              <p class="lead">{{ mars.news_paragraph }}</p>
             </div>
           </div>
         </div>
@@ -34,7 +35,7 @@
 
       <!-- Section for Featured Image and Facts table -->
       <div class="row" id="mars-featured-image">
-        <div class="col-md-7 col-xs-12">
+        <div class="col-md-8">
           <h2>Featured Mars Image</h2>
 
           <!-- if images is False/None/non-existent, then default to error message -->
@@ -45,12 +46,11 @@
           />
         </div>
 
-        <div class="col-md-5 col-xs-12" align="center">
+        <div class="col-md-4">
           <!-- Mars Facts -->
           <div class="row" id="mars-facts">
-            <h2>Mars Facts</h2>
-            {{mars.facts | safe}}
-            
+            <h4>Mars Facts</h4>
+            {{ mars.facts | safe }}
           </div>
         </div>
       </div>
@@ -62,16 +62,24 @@
         </div>
 
         {% for hemisphere in mars.hemispheres %}
-        <div class="col-md-6 col-xs-18">
+        <div class="col-md-6">
           <div class="thumbnail">
             <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
-            <div class="caption">
+            <div class="bg-danger text-white">
               <h3>{{hemisphere.title}}</h3>
             </div>
           </div>
         </div>
         {% endfor %}
       </div>
+
+      <!--section for contact information-->
+      <address>
+        <strong>Jill Jagoda</strong><br>
+        <abbr title="Phone">P:</abbr> 9139405541<br>
+        <a href="mailto:#">jillianjagoda@gmail.comm</a>  
+      </address>
+
     </div>
   </body>
 </html>
